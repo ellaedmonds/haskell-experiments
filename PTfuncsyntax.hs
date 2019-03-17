@@ -103,7 +103,7 @@ now p r 0 = p
 now p r n = (1 + 0.01*r) * now p r (n-1)
 
 interestTable :: (RealFrac a1, Integral a2, Enum t, Num t, Eq t) => a1 -> a1 -> t -> [a2]
-interestTable p r n = [round(now p r x)|x<-[1..n]]
+interestTable p r n = [round(now p r x)|x<-[0..n]]
 
 
 {- 
@@ -167,6 +167,6 @@ inAString nums = show (head nums) ++ inAString (tail nums)
 -}
 
 wordsToPhone :: String -> Int
-wordsToPhonelist w = [charToPhoneDigit(x)|x<-w]
+wordsToPhonelist w = filter (/=0) [charToPhoneDigit(x)|x<-w]
 wordsToPhone w = numListToNum (wordsToPhonelist w)
 
